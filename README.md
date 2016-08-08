@@ -47,7 +47,7 @@ gulp.task('rollup', function(){
 ```javascript
 var rollup = require('gulp-rollup-mep'),
     gulp = require('gulp');
-
+    
 gulp.task('rollup', function(){
   return gulp.src(['src/index.js', 'src/bundle1.js'])
   .pipe(rollup({
@@ -56,4 +56,19 @@ gulp.task('rollup', function(){
   }))
   .pipe(gulp.dest('build'));
 });
+```
+
+### With cache
+```javascript
+var rollup = require('gulp-rollup-mep'),
+    gulp = require('gulp')
+    cache = {};
+
+gulp.task('rollup', function(){
+  return gulp.src(['src/index.js', 'src/bundle1.js'])
+  .pipe(rollup({
+    format: "iife"
+  }), cache, function(bundle, filePath) {
+    cache[filePath] = bundle;
+  })
 ```
