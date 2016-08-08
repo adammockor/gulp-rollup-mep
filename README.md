@@ -71,4 +71,6 @@ gulp.task('rollup', function(){
   }), cache, function(bundle, filePath) {
     cache[filePath] = bundle;
   })
+  .pipe(gulp.dest('build'));
+});
 ```
